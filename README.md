@@ -53,6 +53,37 @@ cmake --install build --prefix dist
 - Windows: `dist/bin/ippatsugaki.exe` に `windeployqt` を実行すると依存DLLが同梱されます。
 - Linux: `cpack -G TGZ` で `ippatsugaki-<version>-Linux.tar.gz` ができます。Qt 6 の実行環境が別途必要です。
 
+### Linuxで配布物をそのまま使う場合（ビルド不要）
+
+GitHub Actions の Artifacts から `ippatsugaki-linux-x86_64.tar.gz` をダウンロードして使います。
+
+必要なもの（Ubuntu 24.04系。xcbプラットフォームプラグインや `libxcb-cursor0` などは依存として自動で入ります）:
+
+```sh
+sudo apt install libqt6widgets6
+```
+
+日本語入力を使用する場合:
+
+```sh
+# GNOME / ibus の場合
+sudo apt install ibus-mozc
+# fcitx5 の場合（Qt6連携モジュールが必要）
+sudo apt install fcitx5-frontend-qt6 fcitx5-mozc
+```
+
+実行:
+
+```sh
+tar -xzf ippatsugaki-1.0.0-Linux.tar.gz
+./ippatsugaki-1.0.0-Linux/bin/ippatsugaki
+```
+
+注意:
+
+- 配布物は Ubuntu 24.04 上でビルドしており、新しい glibc / libstdc++ を前提とします。古いディストリビューションでは動かない場合があります。その場合はソースからビルドしてください。
+- 日本語が「豆腐」（□）になる場合は `sudo apt install fonts-noto-cjk` を入れてください。
+
 ## お題データ（data/prompts.json）
 
 ```json
