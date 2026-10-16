@@ -1,0 +1,8 @@
+build/
+build-*/
+dist/
+*.user
+CMakeLists.txt.user*
+.qt/
+.cache/
+compile_commands.json
